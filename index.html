@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas!</title>
+    <style>
+        @font-face {
+            font-family: 'Pacifico';
+            src: url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+        }
+
+        header {
+            background-color: rgba(132, 41, 41, 0.911);
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            color: white; 
+            padding: 25px; 
+            position: relative;
+            z-index: 100;
+        }
+
+        .countdown {
+            font-size: 35px;
+            text-align: center;
+            margin-top: 250px;
+            z-index: 99999;
+        }
+
+        .days {
+            font-size: 125px;
+            font-weight: bold;
+            margin-top: 20px;
+            z-index: 99999;
+        }
+
+        .left-wreath,
+        .right-wreath {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .left-wreath {
+            left: calc(50% - 375px); 
+        }
+
+        .right-wreath {
+            right: calc(50% - 375px); 
+        }
+
+        .container {
+            position: relative;
+        }
+
+        .top-wreath {
+            width: 700px;
+            height: 700px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            position: fixed;
+            top: 132px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100000;
+            background-image: none;
+
+        }
+
+        .bell {
+            left: 0;
+            top: 142px;
+            width: 150px;
+            height: 150px;
+            position: fixed;
+            cursor: pointer;
+        }
+
+        .bell-words {
+            left: 115px;
+            top: 145px;
+            position: fixed;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img class="left-wreath" src="http://www.clipartbest.com/cliparts/dTr/LAo/dTrLAoRnc.png" alt="Wreath">
+        <h1>Merry Christmas Everybody!</h1>
+        <img class="right-wreath" src="http://www.clipartbest.com/cliparts/dTr/LAo/dTrLAoRnc.png" alt="Wreath">
+    </header>
+    <main>
+        <img class="top-wreath" src="http://clipart-library.com/images_k/christmas-wreath-transparent/christmas-wreath-transparent-18.png" alt="top-wreath">
+        <button onclick="playMusic()">
+            <img class="bell" src="https://tse4.mm.bing.net/th?id=OIP.BheQB2UYDQJZCh_52Ax2hwHaGS&pid=Api&P=0&h=220" alt="bell">
+        </button>
+        <p class="bell-words">Click the bell!</p>
+        <div class="countdown" id="countdown">
+            Days until Christmas:
+            <br>
+            <span class="days" id="daysCount"></span>
+        </div>
+    </main>
+
+    <script>
+        const holidays = [
+            {
+                "date": "2023-12-25",
+                "localName": "Christmas",
+                "name": "Christmas Day",
+                "countryCode": "US",
+                "fixed": true,
+                "global": true,
+                "counties": null,
+                "launchYear": null,
+                "types": ["Public"]
+            }
+        ];
+
+        function calculateDaysUntilChristmas(holidaysData) {
+            const today = new Date('2023-12-23'); 
+            const christmasData = holidaysData.find(holiday => holiday.date === "2023-12-25");
+
+            if (christmasData) {
+                const christmasDate = new Date(christmasData.date);
+                const timeDifference = christmasDate.getTime() - today.getTime();
+                const daysRemaining = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+                const daysCountElement = document.getElementById('daysCount');
+                daysCountElement.innerText = daysRemaining;
+            } else {
+                console.error('Christmas data not found.');
+            }
+        }
+
+        function playMusic() {
+            const audio = new Audio('https://ia903109.us.archive.org/17/items/78_jingle-bell-rock_bobby-helms-joe-beal-jim-boothe_gbia0050703b/Jingle%20Bell%20Rock%20-%20Bobby%20Helms%20-%20Joe%20Beal-restored.mp3'); // Replace 'path/to/your/audio/file.mp3' with the actual path to your audio file
+            audio.play();
+        }
+
+        calculateDaysUntilChristmas(holidays); 
+    </script>
+</body>
+</html>
